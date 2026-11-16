@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ramsam Trading | Equipos y suministros para café y vending | Paraguay</title>
+<meta name="description" content="Ramsam Trading: comercio regional de máquinas de café, equipos y repuestos desde Paraguay. Solicite su cotización. / Comércio regional de máquinas de café, equipamentos e peças a partir do Paraguai.">
+<style>
+:root{--c:#3b2417;--a:#b8742a;--bg:#faf6f1}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,Arial,sans-serif;color:#2a1c14;background:var(--bg);line-height:1.55}
+header{background:var(--c);color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+header b{font-size:1.2rem;letter-spacing:.5px}
+.lang button{background:none;border:1px solid #fff;color:#fff;padding:4px 10px;border-radius:4px;cursor:pointer;margin-left:6px}
+.lang button.on{background:var(--a);border-color:var(--a)}
+.hero{padding:64px 20px;text-align:center;background:linear-gradient(135deg,#3b2417,#6b4026);color:#fff}
+.hero h1{margin:0 0 12px;font-size:2rem}.hero p{max-width:680px;margin:0 auto 24px}
+.btn{display:inline-block;background:var(--a);color:#fff;padding:12px 26px;border-radius:6px;text-decoration:none;border:0;font-size:1rem;cursor:pointer}
+section{max-width:960px;margin:0 auto;padding:44px 20px}
+h2{color:var(--c)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:#fff;border-radius:8px;padding:18px;box-shadow:0 1px 4px #0002}
+form{display:grid;gap:10px;max-width:520px}
+input,textarea,select{padding:10px;border:1px solid #c9b8a8;border-radius:6px;font:inherit;width:100%}
+footer{background:var(--c);color:#e8d9c8;text-align:center;padding:22px;font-size:.9rem}
+footer a{color:#fff}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Ramsam Trading","url":"https://www.ramsamtrading.com","email":"info@ramsamtrading.com","areaServed":["PY","BR","AR"],"address":{"@type":"PostalAddress","addressCountry":"PY"}}</script>
+</head>
+<body>
+<header><b>RAMSAM TRADING</b><div class="lang"><button id="bes" class="on" onclick="setL('es')">ES</button><button id="bpt" onclick="setL('pt')">PT</button></div></header>
+
+<div class="hero">
+<h1 data-es="Equipos y suministros para café y vending, desde Paraguay" data-pt="Equipamentos e suprimentos para café e vending, a partir do Paraguai"></h1>
+<p data-es="Comercio regional B2B de máquinas de café, equipos y repuestos. Trabajamos por cotización, adaptada a cada proyecto." data-pt="Comércio regional B2B de máquinas de café, equipamentos e peças. Trabalhamos sob cotação, adaptada a cada projeto."></p>
+<a class="btn" href="#cotizar" data-es="Solicitar cotización" data-pt="Solicitar cotação"></a>
+</div>
+
+<section>
+<h2 data-es="Qué ofrecemos" data-pt="O que oferecemos"></h2>
+<div class="grid">
+<div class="card"><b data-es="Máquinas de café" data-pt="Máquinas de café"></b><p data-es="Máquinas nuevas y usadas para vending, oficinas y comercios." data-pt="Máquinas novas e usadas para vending, escritórios e comércios."></p></div>
+<div class="card"><b data-es="Equipos y bombas" data-pt="Equipamentos e bombas"></b><p data-es="Equipamiento de apoyo y bombas para instalaciones." data-pt="Equipamentos de apoio e bombas para instalações."></p></div>
+<div class="card"><b data-es="Repuestos" data-pt="Peças de reposição"></b><p data-es="Repuestos y accesorios para equipos de café." data-pt="Peças e acessórios para equipamentos de café."></p></div>
+<div class="card"><b data-es="Cotización a medida" data-pt="Cotação sob medida"></b><p data-es="Contanos qué necesitás y volvemos con una propuesta." data-pt="Conte-nos o que precisa e voltamos com uma proposta."></p></div>
+</div>
+</section>
+
+<section id="cotizar">
+<h2 data-es="Solicitar cotización" data-pt="Solicitar cotação"></h2>
+<form id="f">
+<input name="n" required data-esp="Nombre / Empresa" data-ptp="Nome / Empresa">
+<input name="e" type="email" required data-esp="Correo electrónico" data-ptp="E-mail">
+<input name="p" data-esp="País / Ciudad" data-ptp="País / Cidade">
+<textarea name="m" rows="4" required data-esp="¿Qué producto o equipo necesita? Cantidad aproximada." data-ptp="Que produto ou equipamento precisa? Quantidade aproximada."></textarea>
+<button class="btn" type="submit" data-es="Enviar solicitud" data-pt="Enviar solicitação"></button>
+</form>
+<p><small data-es="Se abrirá su programa de correo con la solicitud lista para enviar a info@ramsamtrading.com." data-pt="Seu programa de e-mail abrirá com a solicitação pronta para enviar a info@ramsamtrading.com."></small></p>
+</section>
+
+<footer>Ramsam Trading · Paraguay · <a href="mailto:info@ramsamtrading.com">info@ramsamtrading.com</a></footer>
+
+<script>
+var L='es';
+function setL(l){L=l;document.documentElement.lang=l;
+document.querySelectorAll('[data-es]').forEach(function(x){x.textContent=x.getAttribute('data-'+l)});
+document.querySelectorAll('[data-esp]').forEach(function(x){x.placeholder=x.getAttribute('data-'+l+'p')});
+document.getElementById('bes').className=l=='es'?'on':'';document.getElementById('bpt').className=l=='pt'?'on':'';}
+var nl=(navigator.language||'es').toLowerCase();setL(nl.indexOf('pt')==0?'pt':'es');
+document.getElementById('f').addEventListener('submit',function(ev){ev.preventDefault();var f=ev.target;
+var s=(L=='pt'?'Solicitação de cotação':'Solicitud de cotización')+' - '+f.n.value;
+var b=f.n.value+'\n'+f.e.value+'\n'+f.p.value+'\n\n'+f.m.value;
+location.href='mailto:info@ramsamtrading.com?subject='+encodeURIComponent(s)+'&body='+encodeURIComponent(b);});
+</script>
+</body>
+</html>
