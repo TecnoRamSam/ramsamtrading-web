@@ -54,7 +54,7 @@ footer a{color:#fff}
 <textarea name="m" rows="4" required data-esp="¿Qué producto o equipo necesita? Cantidad aproximada." data-ptp="Que produto ou equipamento precisa? Quantidade aproximada."></textarea>
 <button class="btn" type="submit" data-es="Enviar solicitud" data-pt="Enviar solicitação"></button>
 </form>
-<p><small data-es="Se abrirá su programa de correo con la solicitud lista para enviar a info@ramsamtrading.com." data-pt="Seu programa de e-mail abrirá com a solicitação pronta para enviar a info@ramsamtrading.com."></small></p>
+<p><small id="st" role="status"></small></p>
 </section>
 
 <footer>© 2026 RAMSAM.1999 LLC · 13901 SW 143rd Court Suite 4, Miami, Florida 33186 · <a href="mailto:info@ramsamtrading.com">info@ramsamtrading.com</a></footer>
@@ -66,10 +66,16 @@ document.querySelectorAll('[data-es]').forEach(function(x){x.textContent=x.getAt
 document.querySelectorAll('[data-esp]').forEach(function(x){x.placeholder=x.getAttribute('data-'+l+'p')});
 document.getElementById('bes').className=l=='es'?'on':'';document.getElementById('bpt').className=l=='pt'?'on':'';}
 var nl=(navigator.language||'es').toLowerCase();setL(nl.indexOf('pt')==0?'pt':'es');
+var KEY='d3b15c48-3c63-4d88-bcf0-879a16b5b543';
 document.getElementById('f').addEventListener('submit',function(ev){ev.preventDefault();var f=ev.target;
-var s=(L=='pt'?'Solicitação de cotação':'Solicitud de cotización')+' - '+f.n.value;
-var b=f.n.value+'\n'+f.e.value+'\n'+f.p.value+'\n\n'+f.m.value;
-location.href='mailto:info@ramsamtrading.com?subject='+encodeURIComponent(s)+'&body='+encodeURIComponent(b);});
+var btn=f.querySelector('button');var st=document.getElementById('st');
+var subj=(L=='pt'?'Solicitação de cotação':'Solicitud de cotización')+' - '+f.n.value;
+var msg={es:['Enviando...','¡Gracias! Recibimos su solicitud y le responderemos pronto.','No se pudo enviar. Escríbanos a info@ramsamtrading.com'],pt:['Enviando...','Obrigado! Recebemos sua solicitação e responderemos em breve.','Não foi possível enviar. Escreva para info@ramsamtrading.com']}[L];
+btn.disabled=true;st.textContent=msg[0];
+fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+body:JSON.stringify({access_key:KEY,subject:subj,from_name:'Web Ramsam Trading',name:f.n.value,email:f.e.value,pais_ciudad:f.p.value,mensaje:f.m.value})})
+.then(function(r){return r.json()}).then(function(d){if(d.success){st.textContent=msg[1];f.reset()}else{st.textContent=msg[2]}btn.disabled=false})
+.catch(function(){st.textContent=msg[2];btn.disabled=false});});
 </script>
 </body>
 </html>
